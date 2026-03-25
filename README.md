@@ -1,32 +1,32 @@
 # Reporly — AI Report Generator
 
-Upload your data, AI analyzes it, download a professional report (PDF, PPTX, or DOCX) in minutes.
+> Upload any data → AI understands it → Professional report in 2 minutes
 
-## Features
+## What It Does
 
-- **Multi-format export**: PDF, PowerPoint (PPTX), Word (DOCX)
-- **3 report templates**: Minimal, Corporate, Modern
-- **AI-powered insights**: Automatic pattern detection and analysis
-- **Smart charts**: Auto-generated visualizations based on your data
-- **Encoding detection**: Handles UTF-8, Latin-1, CP1252 automatically
-- **Self-healing**: Graceful error handling with user-friendly messages
-- **Swap-ready AI**: Change LLM provider via `.env` — no code changes
+Reporly turns raw CSV/Excel data into professional reports with AI-powered insights.
+
+- Upload CSV, Excel, or TSV files (max 10MB)
+- AI automatically detects patterns, trends, and anomalies
+- Download reports as PDF, PowerPoint, or Word
+- 3 built-in templates: Minimal, Corporate, Modern
+- Dark dashboard UI with interactive exploration
 
 ## Quick Start
 
 ```bash
 # 1. Clone
-git clone <your-repo-url>
-cd project-reporly
+git clone https://github.com/quoctri-dev/reporly.git
+cd reporly
 
-# 2. Install
+# 2. Setup
 python -m venv .venv
 source .venv/bin/activate   # Windows: .venv\Scripts\activate
 pip install -r requirements.txt
 
 # 3. Configure
 cp .env.example .env
-# Edit .env: add your LLM_API_KEY (get free from https://aistudio.google.com/apikey)
+# Edit .env → add your LLM_API_KEY (get free: https://aistudio.google.com/apikey)
 
 # 4. Run
 streamlit run app.py
@@ -36,44 +36,61 @@ streamlit run app.py
 
 | Variable | Default | Description |
 |----------|---------|-------------|
-| `LLM_MODEL` | `gemini/gemini-2.0-flash` | Any LiteLLM model string |
-| `LLM_API_KEY` | — | Required: API key for chosen provider |
-| `EXPORT_FORMAT` | `pdf` | Default export: pdf, pptx, docx |
-| `TEMPLATE_NAME` | `minimal` | Default template: minimal, corporate, modern |
-| `MAX_FILE_SIZE_MB` | 10 | Max upload size |
-| `MAX_INSIGHTS` | 5 | Number of AI insights |
-| `MAX_CHARTS` | 5 | Number of charts |
+| `LLM_API_KEY` | — | **Required.** API key for AI provider |
+| `LLM_MODEL` | `gemini/gemini-2.0-flash` | Any [LiteLLM model string](https://docs.litellm.ai/docs/providers) |
+| `MAX_INSIGHTS` | `5` | Number of AI insights to generate |
+| `MAX_CHARTS` | `5` | Number of charts to generate |
+| `MAX_FILE_SIZE_MB` | `10` | Max upload file size |
 
-Swap AI provider: change `LLM_MODEL` + `LLM_API_KEY` in `.env`. No code change needed.
+**Swap AI provider:** change `LLM_MODEL` + `LLM_API_KEY` in `.env`. No code changes needed.
 
-## Supported Input Formats
+| Provider | Model String | Key Source |
+|----------|-------------|------------|
+| Google Gemini | `gemini/gemini-2.0-flash` | [AI Studio](https://aistudio.google.com/apikey) |
+| Anthropic Claude | `claude-sonnet-4-6` | [Console](https://console.anthropic.com) |
+| Groq (free) | `groq/llama-3.1-70b` | [Console](https://console.groq.com) |
 
-- CSV (.csv)
-- Excel (.xlsx, .xls)
-- TSV (.tsv)
+## Features
 
-## Tech Stack
-
-- **UI**: Streamlit
-- **AI**: LiteLLM (Gemini, OpenAI, Claude, etc.)
-- **Charts**: matplotlib
-- **Export**: ReportLab (PDF), python-pptx (PPTX), python-docx (DOCX)
-- **Data**: pandas, numpy
+- **AI Analysis** — LLM-powered pattern detection with structured insights
+- **Smart Charts** — Auto-generated matplotlib visualizations based on AI suggestions
+- **3 Export Formats** — PDF (ReportLab), PowerPoint (python-pptx), Word (python-docx)
+- **3 Templates** — Minimal (clean), Corporate (formal navy), Modern (bold gradient)
+- **Self-Healing** — Graceful degradation: LLM fails → fallback to raw stats, no crash
+- **Dashboard UI** — Dark theme, 4 tabs, glassmorphism cards, Google Fonts
+- **Swappable AI** — Change provider in `.env`, architecture stays the same
+- **Encoding Detection** — Auto-handles UTF-8, Latin-1, CP1252
 
 ## Architecture
 
 ```
-app.py              <- Streamlit UI (wiring layer)
-  |
-src/config.py       <- All settings from .env
-src/providers/      <- LLM adapter (LiteLLM, swap-ready)
-src/core/           <- Business logic (detector + analyzer + models + health)
-src/charts/         <- Chart generation (matplotlib)
-src/io/             <- File reader + PDF/PPTX/DOCX exporters
-src/templates/      <- 3 built-in report styles
+app.py                  ← Streamlit wiring (dashboard layout, tabs)
+  │
+src/config.py           ← All settings from .env
+src/providers/          ← LLM adapter (LiteLLM, swap-ready)
+src/core/               ← Business logic (detector, analyzer, models, health)
+src/charts/             ← Chart generation (matplotlib)
+src/io/                 ← File reader + PDF/PPTX/DOCX exporters
+src/templates/          ← 3 built-in report styles
+src/ui/                 ← Custom CSS + tab renderers
 ```
 
-Dependency direction: config <- providers <- core <- io <- app
+Dependency direction: `config → providers → core → charts → io → ui → app`
+
+Each module < 300 lines. Clean separation of concerns.
+
+## Tech Stack
+
+| Layer | Technology |
+|-------|-----------|
+| UI | Streamlit 1.55, custom CSS |
+| AI | LiteLLM (Gemini, Claude, Groq, etc.) |
+| Charts | matplotlib, Plotly |
+| PDF Export | ReportLab |
+| PPTX Export | python-pptx |
+| DOCX Export | python-docx |
+| Data | pandas, openpyxl |
+| Runtime | Python 3.13 |
 
 ## License
 
