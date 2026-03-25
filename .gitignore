@@ -19,9 +19,5 @@ __pycache__/
 output/
 *.log
 
-# Internal docs (not for public repo)
-COMPETITIVE.md
-CONTINUITY.md
-ROADMAP.md
-spec.md
-packages.txt
+# Note: Internal docs (COMPETITIVE, CONTINUITY, ROADMAP, spec)
+# live OUTSIDE this repo folder — no need to gitignore them.
