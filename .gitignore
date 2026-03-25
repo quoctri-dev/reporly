@@ -1,9 +1,27 @@
+# Python
 .venv/
 __pycache__/
 *.pyc
 *.pyo
+*.egg-info/
+
+# Environment
 .env
-*.log
-*.DS_Store
-output/
 .streamlit/secrets.toml
+
+# IDE / Tools
+.claude/
+*.DS_Store
+.vscode/
+.idea/
+
+# Output
+output/
+*.log
+
+# Internal docs (not for public repo)
+COMPETITIVE.md
+CONTINUITY.md
+ROADMAP.md
+spec.md
+packages.txt
