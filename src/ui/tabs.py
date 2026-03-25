@@ -1,0 +1,251 @@
+"""
+Reporly UI — Tab rendering functions.
+Each tab is a self-contained function that reads/writes session_state.
+No business logic here — only wiring + display.
+"""
+import streamlit as st
+import pandas as pd
+from datetime import datetime
+
+from src.config import load_config
+from src.providers import call_llm
+from src.core.analyzer import analyze_data
+from src.core.models import Report
+from src.charts import generate_charts
+from src.core.health import classify_error, get_user_message
+from src.core.analytics import track_report
+from src.templates import TEMPLATE_NAMES
+from src.ui.styles import insight_card, template_preview_card
+
+config = load_config()
+
+EXPORT_FORMATS = {
+    "PDF": {"ext": "pdf", "mime": "application/pdf"},
+    "PPTX": {
+        "ext": "pptx",
+        "mime": "application/vnd.openxmlformats-officedocument.presentationml.presentation",
+    },
+    "DOCX": {
+        "ext": "docx",
+        "mime": "application/vnd.openxmlformats-officedocument.wordprocessingml.document",
+    },
+}
+
+TEMPLATE_META = {
+    "minimal":   {"primary": "#374151", "accent": "#2563EB", "desc": "Clean & simple"},
+    "corporate": {"primary": "#1E3A5F", "accent": "#B8860B", "desc": "Formal & navy"},
+    "modern":    {"primary": "#6366F1", "accent": "#EC4899", "desc": "Bold & colorful"},
+}
+
+
+# ---------------------------------------------------------------------------
+# Tab: Data Overview
+# ---------------------------------------------------------------------------
+def tab_data():
+    """Data overview — profile, quality, preview."""
+    profile = st.session_state.profile
+    df = st.session_state.df
+
+    m1, m2, m3, m4 = st.columns(4)
+    m1.metric(":material/table_rows: Rows", f"{profile.rows:,}")
+    m2.metric(":material/view_column: Columns", str(profile.columns))
+    m3.metric(":material/calculate: Numeric", str(profile.basic_stats.get("numeric_columns", 0)))
+    m4.metric(":material/report_problem: Missing", f"{profile.basic_stats.get('null_pct', 0)}%")
+
+    st.markdown("")
+
+    if profile.warnings:
+        with st.expander(f":material/warning: {len(profile.warnings)} quality warnings", expanded=False):
+            for w in profile.warnings:
+                st.warning(w, icon=":material/info:")
+
+    with st.expander(":material/table_view: Data Preview (first 30 rows)", expanded=True):
+        st.dataframe(df.head(30), use_container_width=True, height=400)
+
+    with st.expander(":material/list: Column Details", expanded=False):
+        col_data = []
+        for ci in profile.column_info:
+            col_data.append({
+                "Column": ci.name,
+                "Type": ci.dtype,
+                "Unique": ci.unique_count,
+                "Null %": f"{ci.null_pct}%",
+                "Sample": ", ".join(str(v) for v in ci.sample_values[:3]),
+            })
+        st.dataframe(pd.DataFrame(col_data), use_container_width=True, hide_index=True)
+
+
+# ---------------------------------------------------------------------------
+# Tab: AI Insights
+# ---------------------------------------------------------------------------
+def tab_insights(max_insights: int):
+    """AI Insights — generate and display insights."""
+    profile = st.session_state.profile
+    df = st.session_state.df
+
+    if not st.session_state.analysis_done:
+        st.markdown(
+            '<p style="color:#888; text-align:center; padding:32px 0;">'
+            ':material/psychology: Click below to generate AI insights from your data.</p>',
+            unsafe_allow_html=True,
+        )
+        if st.button(":material/auto_awesome: Generate AI Insights", type="primary",
+                      use_container_width=True):
+            with st.spinner("AI is analyzing your data..."):
+                try:
+                    sample_str = df.head(15).to_string(index=False)
+                    insights = analyze_data(
+                        profile=profile,
+                        data_sample_str=sample_str,
+                        call_llm_fn=call_llm,
+                        model=config.llm_model,
+                        api_key=config.llm_api_key,
+                        max_insights=max_insights,
+                        max_tokens=config.llm_max_tokens,
+                    )
+                    st.session_state.insights = insights
+                    st.session_state.analysis_done = True
+                    st.rerun()
+                except Exception as e:
+                    err_info = classify_error(e)
+                    st.error(get_user_message(err_info))
+        return
+
+    insights = st.session_state.insights
+    if not insights:
+        st.info(":material/info: No insights generated. Try with a different dataset.")
+        return
+
+    st.markdown(f"##### :material/lightbulb: {len(insights)} Insights Found")
+    for i, ins in enumerate(insights, 1):
+        insight_card(i, ins.title, ins.description, ins.importance)
+
+
+# ---------------------------------------------------------------------------
+# Tab: Charts
+# ---------------------------------------------------------------------------
+def tab_charts(max_charts: int):
+    """Charts — generate and display charts."""
+    df = st.session_state.df
+    insights = st.session_state.insights
+
+    if not st.session_state.analysis_done:
+        st.info(":material/info: Generate AI insights first (Insights tab) to get smart chart suggestions.")
+        return
+
+    if not st.session_state.charts:
+        if st.button(":material/bar_chart: Generate Charts", type="primary",
+                      use_container_width=True):
+            with st.spinner("Creating visualizations..."):
+                try:
+                    charts = generate_charts(
+                        df, insights,
+                        max_charts=max_charts,
+                        width=config.chart_width,
+                        height=config.chart_height,
+                    )
+                    st.session_state.charts = charts
+                    st.rerun()
+                except Exception as e:
+                    st.warning(f":material/warning: Chart generation issue: {str(e)[:200]}")
+            return
+
+    charts = st.session_state.charts
+    st.markdown(f"##### :material/insert_chart: {len(charts)} Charts")
+
+    for i in range(0, len(charts), 2):
+        cols = st.columns(2)
+        for j, col in enumerate(cols):
+            idx = i + j
+            if idx < len(charts):
+                with col:
+                    st.image(charts[idx], use_container_width=True)
+
+
+# ---------------------------------------------------------------------------
+# Tab: Export
+# ---------------------------------------------------------------------------
+def tab_export(export_format: str, template_key: str, export_fn_map: dict):
+    """Export — template preview, generate, download."""
+    insights = st.session_state.insights
+    charts = st.session_state.charts
+
+    # Template preview
+    st.markdown("##### :material/palette: Selected Template")
+    tc1, tc2, tc3 = st.columns(3)
+    for col, name in zip([tc1, tc2, tc3], TEMPLATE_NAMES):
+        meta = TEMPLATE_META[name]
+        with col:
+            selected = " border-color:#06b6d4;" if name == template_key else ""
+            st.markdown(f"""
+            <div class="rp-template-card" style="{selected}">
+                <div style="display:flex; gap:6px; justify-content:center;">
+                    <div style="width:28px; height:28px; border-radius:6px; background:{meta['primary']};"></div>
+                    <div style="width:28px; height:28px; border-radius:6px; background:{meta['accent']};"></div>
+                </div>
+                <div class="rp-template-name">{name.capitalize()}{'  ✓' if name == template_key else ''}</div>
+                <div class="rp-template-desc">{meta['desc']}</div>
+            </div>
+            """, unsafe_allow_html=True)
+
+    st.markdown("")
+
+    report_title = st.text_input(
+        ":material/title: Report Title",
+        value=f"Analysis: {st.session_state.filename}",
+    )
+
+    col_s1, col_s2, col_s3 = st.columns(3)
+    col_s1.metric(":material/lightbulb: Insights", str(len(insights)))
+    col_s2.metric(":material/bar_chart: Charts", str(len(charts)))
+    col_s3.metric(":material/description: Format", export_format)
+
+    st.markdown("")
+
+    if st.button(
+        f":material/download: Generate & Download {export_format}",
+        type="primary",
+        use_container_width=True,
+    ):
+        _do_export(report_title, export_format, template_key, export_fn_map)
+
+
+def _do_export(title: str, export_format: str, template_key: str, export_fn_map: dict):
+    """Generate report and offer download."""
+    profile = st.session_state.profile
+    report = Report(
+        title=title,
+        data_profile=profile,
+        insights=st.session_state.insights,
+        charts=st.session_state.charts,
+        generated_at=datetime.now(),
+    )
+
+    fmt = EXPORT_FORMATS[export_format]
+    progress = st.progress(0, text=f"Building {export_format} report...")
+
+    try:
+        progress.progress(30, text="Assembling report content...")
+        export_bytes = export_fn_map[export_format](
+            report, template_name=template_key, app_name=config.app_name,
+        )
+        size_kb = len(export_bytes) / 1024
+        progress.progress(100, text=f"Done! ({size_kb:.0f} KB)")
+
+        track_report(export_format, template_key, profile.rows, size_kb)
+
+        base_name = profile.filename.rsplit(".", 1)[0]
+        file_name = f"reporly_{base_name}_{datetime.now().strftime('%Y%m%d')}.{fmt['ext']}"
+
+        st.download_button(
+            label=f":material/download: Download {export_format} ({size_kb:.0f} KB)",
+            data=export_bytes,
+            file_name=file_name,
+            mime=fmt["mime"],
+            type="primary",
+            use_container_width=True,
+        )
+    except Exception as e:
+        err_info = classify_error(e)
+        st.error(get_user_message(err_info))
+        progress.progress(100, text="Export failed")

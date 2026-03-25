@@ -1,26 +1,10 @@
-# Reporly — Dependencies
-# Install: pip install -r requirements.txt
-# Python >= 3.9 supported
-
-# Core
-streamlit>=1.38.0,<2.0
-pandas>=2.0.0,<3.0
-numpy>=1.24.0,<3.0
-openpyxl>=3.1.0,<4.0
-
-# AI (swap-ready via LiteLLM)
-litellm>=1.50.0,<2.0
-
-# Charts
-matplotlib>=3.7.0,<4.0
-plotly>=5.18.0,<6.0
-
-# PDF Export
-reportlab>=4.0.0,<5.0
-
-# PPTX + DOCX Export
-python-pptx>=1.0.0,<2.0
-python-docx>=1.1.0,<2.0
-
-# Utilities
-python-dotenv>=1.0.0,<2.0
+streamlit>=1.31.0
+pandas>=2.0.0
+plotly>=5.18.0
+matplotlib>=3.8.0
+reportlab>=4.0.0
+python-pptx>=0.6.21
+python-docx>=1.1.0
+litellm>=1.0.0
+python-dotenv>=1.0.0
+openpyxl>=3.1.0

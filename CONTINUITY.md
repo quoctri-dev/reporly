@@ -1,14 +1,14 @@
 # Reporly — CONTINUITY
 
 ## State
-- Phase: 2 — IN PROGRESS (2026-03-25). CC instruction ready.
+- Phase: 2 — PAUSED (2026-03-25). PD1-PD4 code done, UI/UX cần redesign.
 - Product: AI Report Generator — upload CSV/Excel → AI analyze → PDF/PPTX/DOCX đẹp
 - Name: Reporly (confirmed)
 - Stack: Python 3.13 + Streamlit + Gemini 2.5 Flash (LiteLLM swap) + pandas + matplotlib + ReportLab
 - Billing: Gemini POSTPAY (Visa ••8596, threshold ₫2M)
 
 ## Blockers
-- Không có blocker. CC instruction tại opus-reports/2026-03-25_08-00_cc-reporly-phase2.md
+- UI/UX quá basic (Streamlit default) — cần redesign modern, multi-layer, professional
 
 ## Key Decisions
 - 2026-03-23: Focus AI Report Generator. Positioning = OUTPUT QUALITY.
@@ -28,6 +28,14 @@
 - Vertical niche: marketing reports? survey reports? (post Phase 3)
 - Open-source strategy? (competitive advantage vs Powerdrill $19.90/mo)
 
+## Phase 2 Progress
+- PD1 DONE: PPTX + DOCX export + template system (3 styles)
+- PD2 DONE: Sidebar + multi-format + analytics
+- PD3 DONE: Input validation + self-healing
+- PD4 DONE: Deploy config + git init
+- PENDING: UI/UX redesign (modern, multi-layer)
+
 ## Next
-- Anh paste CC instruction → CC build Phase 2 (PD1→PD2→PD3→PD4)
-- Sau CC xong: test 3 samples + review report → chuẩn bị deploy Streamlit Cloud
+- UI/UX redesign: search trends + Grok input → modern professional interface
+- Test 3 formats × 3 templates × 3 datasets
+- Deploy Streamlit Cloud
