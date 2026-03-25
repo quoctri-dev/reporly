@@ -1,0 +1,106 @@
+Respondent_ID,Age,Gender,Income,Satisfaction,Comments,Signup_Date,Score
+R001,19,Male,49265,1,,,91
+R002,61,,24523,4,Great service,,59
+R003,,F,,3,Great service,2025-01-13,69
+R004,,F,,2,Great service,2025-06-07,64
+R005,39,,101721,6,Great service,2025-05-28,84
+R006,68,Female,82736,2,Great service,2025-04-17,60
+R007,46,Female,10334,10,,2025-01-05,81
+R008,,Male,82821,7,Very satisfied,2025-05-02,94
+R009,,Other,59005,3,,2025-06-02,61
+R010,23,,44478,1,,2025-01-31,83
+R011,66,F,65845,4,OK,,57
+R012,48,male,,1,Great service,2025-03-14,63
+R013,69,,18686,9,Needs improvement,2025-01-08,81
+R014,,Female,82687,7,Needs improvement,2025-03-25,64
+R015,24,Female,119017,4,Great service,2025-05-05,53
+R016,,F,55768,8,Very satisfied,2025-04-02,67
+R017,,,41779,8,,2025-03-29,64
+R018,68,,85154,10,,2025-01-23,76
+R019,31,F,65655,7,Very satisfied,2025-03-05,70
+R020,55,Female,5665,1,Great service,2025-05-10,52
+R021,69,,17844,4,Great service,2025-01-04,94
+R022,26,Other,89887,1,,2025-02-11,95
+R023,55,Male,65786,7,Needs improvement,2025-04-05,90
+R024,58,Male,95538,1,OK,2025-03-11,94
+R025,68,Female,15611,6,Very satisfied,2025-05-12,93
+R026,,male,86151,,OK,2025-05-24,95
+R027,31,Female,36278,8,Very satisfied,2025-05-29,94
+R028,32,Other,40043,7,OK,,73
+R029,51,,,9,OK,2025-04-05,93
+R030,22,Female,65014,,,2025-03-15,54
+R031,62,Female,119687,1,OK,2025-06-24,84
+R032,44,male,7815,2,Great service,2025-03-01,83
+R033,39,,47769,9,Would not recommend,2025-04-28,69
+R034,37,Female,34724,5,Would not recommend,2025-02-07,72
+R035,57,Female,42387,3,Would not recommend,2025-06-20,100
+R036,20,Other,62788,3,Needs improvement,2025-01-09,92
+R037,41,male,26311,2,Great service,2025-05-08,99
+R038,38,Female,,9,OK,2025-03-17,80
+R039,66,F,109802,8,OK,2025-05-03,52
+R040,37,Male,115215,6,Great service,2025-06-05,91
+R041,68,,7955,,Would not recommend,2025-06-21,55
+R042,49,Other,72050,6,,2025-04-20,73
+R043,,Other,63402,2,Needs improvement,2025-04-24,97
+R044,36,Female,60552,7,Needs improvement,2025-06-03,55
+R045,51,Other,,7,Great service,,90
+R046,53,male,103991,4,Needs improvement,2025-03-16,85
+R047,37,,69762,8,Needs improvement,,50
+R048,58,,21276,5,,2025-06-26,91
+R049,,Other,13745,6,,2025-04-22,66
+R050,62,,,10,Great service,2025-02-11,87
+R051,62,Female,11932,7,Very satisfied,2025-04-02,53
+R052,22,F,,2,,2025-05-20,70
+R053,61,,94842,6,Great service,2025-04-01,-1
+R054,67,male,26368,3,,2025-02-18,100
+R055,51,,77235,2,,2025-01-20,57
+R056,48,Other,52522,8,,2025-03-29,61
+R057,,,,3,Very satisfied,2025-02-02,63
+R058,,,19643,,Would not recommend,2025-04-21,52
+R059,,,12768,5,Great service,,0
+R060,56,Female,31217,6,Great service,,97
+R061,40,Other,,10,Needs improvement,2025-01-18,56
+R062,51,Female,41943,9,Great service,2025-01-26,63
+R063,48,Other,29264,2,Needs improvement,2025-04-08,77
+R064,25,,21202,9,Needs improvement,2025-04-03,95
+R065,23,Other,55434,10,Very satisfied,2025-04-24,64
+R066,45,Female,115239,6,Needs improvement,,93
+R067,,male,93672,,Needs improvement,2025-06-27,87
+R068,28,Male,31094,10,Would not recommend,2025-02-01,64
+R069,35,,81273,7,OK,2025-06-04,75
+R070,27,,21015,8,Needs improvement,2025-02-04,51
+R071,,Male,8506,7,,2025-02-09,69
+R072,,Male,73150,8,Needs improvement,2025-05-08,81
+R073,69,,7316,1,,2025-01-31,74
+R074,46,male,,5,Very satisfied,2025-04-21,58
+R075,66,Male,69297,9,,2025-05-24,60
+R076,49,F,85863,5,OK,,999
+R077,65,F,,6,,,72
+R078,21,,35752,10,Great service,2025-01-17,69
+R079,52,Other,,7,,2025-04-18,999
+R080,38,male,47260,8,Great service,2025-02-22,71
+R081,60,Other,,7,Needs improvement,2025-01-20,84
+R082,37,F,34607,2,Very satisfied,2025-01-25,87
+R083,,,60981,2,Very satisfied,2025-05-10,69
+R084,30,male,86915,9,Needs improvement,2025-06-10,95
+R085,49,Female,112991,8,OK,2025-05-17,89
+R086,54,,73454,8,Needs improvement,2025-06-25,98
+R087,38,,13444,7,OK,2025-06-15,60
+R088,43,Female,,4,Would not recommend,2025-04-29,81
+R089,59,Male,40744,5,Would not recommend,2025-06-18,85
+R090,64,male,12251,2,OK,2025-01-17,76
+R091,23,male,99926,4,Great service,2025-05-09,57
+R092,67,F,16829,2,Would not recommend,2025-03-26,87
+R093,65,Female,33574,3,Needs improvement,2025-04-23,76
+R094,49,F,19806,7,,2025-03-13,100
+R095,63,Other,7762,10,Great service,2025-06-19,53
+R096,33,Other,45536,6,Would not recommend,2025-05-17,65
+R097,43,Other,112833,5,Needs improvement,2025-02-11,78
+R098,67,,9440,2,Would not recommend,2025-05-06,80
+R099,39,,112510,3,Very satisfied,2025-01-17,72
+R100,53,,96122,,Great service,2025-02-17,90
+R001,35,Male,50000,8,Great service,2025-03-15,85
+R001,35,Male,50000,8,Great service,2025-03-15,85
+R001,35,Male,50000,8,Great service,2025-03-15,85
+R001,35,Male,50000,8,Great service,2025-03-15,85
+R001,35,Male,50000,8,Great service,2025-03-15,85

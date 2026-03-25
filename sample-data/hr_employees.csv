@@ -1,0 +1,201 @@
+Employee_ID,Department,Level,City,Years_Experience,Salary_USD,Performance_Score,Training_Hours,Satisfaction,Left_Company
+EMP-0001,Marketing,Lead,Hanoi,25,3805,4.4,28,3,1
+EMP-0002,HR,Manager,Can Tho,17,3957,4.7,42,6,0
+EMP-0003,Finance,Director,HCMC,0,3980,2.7,117,10,0
+EMP-0004,Operations,Senior,Danang,12,2625,3.2,36,1,1
+EMP-0005,Finance,Manager,HCMC,14,3887,4.0,10,2,0
+EMP-0006,Operations,Junior,Can Tho,6,1141,4.6,13,4,0
+EMP-0007,Operations,Junior,Danang,23,1995,,4,2,0
+EMP-0008,Finance,Junior,Can Tho,18,1777,3.2,51,7,0
+EMP-0009,Operations,Junior,Danang,17,1531,2.2,5,2,0
+EMP-0010,Operations,Senior,Hanoi,19,2527,3.3,84,1,1
+EMP-0011,Sales,Director,HCMC,12,5501,2.9,38,6,0
+EMP-0012,Finance,Manager,Danang,4,3038,,68,9,0
+EMP-0013,Sales,Director,Danang,23,6195,3.2,65,3,0
+EMP-0014,Sales,Junior,HCMC,5,1091,2.2,70,8,0
+EMP-0015,Marketing,Director,Hanoi,2,4263,3.7,45,3,1
+EMP-0016,Engineering,Senior,Hanoi,19,2518,3.5,84,5,0
+EMP-0017,Finance,Manager,Can Tho,11,4045,2.5,100,4,0
+EMP-0018,Marketing,Senior,HCMC,4,2097,3.4,99,5,0
+EMP-0019,Sales,Director,HCMC,19,4886,4.5,25,5,0
+EMP-0020,Operations,Junior,HCMC,0,884,4.4,98,10,0
+EMP-0021,Finance,Senior,Danang,17,2863,4.0,50,4,0
+EMP-0022,Sales,Lead,Hanoi,16,3308,3.5,108,10,0
+EMP-0023,HR,Mid,HCMC,5,1474,4.6,93,8,0
+EMP-0024,Sales,Lead,Can Tho,7,2522,2.1,116,6,0
+EMP-0025,Engineering,Junior,Hanoi,20,1758,3.6,106,5,0
+EMP-0026,HR,Director,Danang,12,4918,4.5,48,4,0
+EMP-0027,Marketing,Lead,Danang,25,3737,3.5,21,4,1
+EMP-0028,Sales,Mid,Can Tho,5,1327,4.5,53,6,0
+EMP-0029,Operations,Lead,Hanoi,15,3033,4.5,,1,0
+EMP-0030,Operations,Manager,HCMC,1,3625,2.5,66,7,0
+EMP-0031,Operations,Director,Can Tho,21,5984,2.6,60,8,0
+EMP-0032,Finance,Mid,HCMC,25,2480,3.9,21,6,0
+EMP-0033,Sales,Lead,Hanoi,12,2824,,116,9,0
+EMP-0034,Finance,Junior,HCMC,5,1044,2.1,64,2,0
+EMP-0035,Operations,Director,Can Tho,13,5180,2.1,29,8,0
+EMP-0036,Marketing,Manager,HCMC,25,4682,4.1,,3,0
+EMP-0037,Marketing,Manager,HCMC,17,3962,4.1,73,9,0
+EMP-0038,HR,Director,Can Tho,6,5053,3.1,83,10,0
+EMP-0039,Finance,Senior,Danang,19,2629,4.3,100,9,0
+EMP-0040,Finance,Manager,HCMC,15,3714,3.0,94,3,1
+EMP-0041,Operations,Mid,HCMC,14,2002,2.3,100,6,0
+EMP-0042,Sales,Lead,HCMC,20,3129,2.4,55,2,0
+EMP-0043,Finance,Junior,Hanoi,23,1922,3.8,91,10,1
+EMP-0044,Operations,Lead,Hanoi,14,2833,4.8,24,1,1
+EMP-0045,Finance,Mid,Can Tho,21,2083,2.0,35,7,0
+EMP-0046,HR,Manager,Danang,6,3517,2.2,,5,0
+EMP-0047,Marketing,Senior,HCMC,7,2207,4.8,33,3,1
+EMP-0048,Finance,Junior,Danang,16,1551,4.4,112,9,0
+EMP-0049,Operations,Lead,HCMC,12,3147,4.3,58,8,0
+EMP-0050,HR,Junior,Danang,8,1096,5.0,29,6,0
+EMP-0051,Finance,Manager,Hanoi,0,3393,2.9,95,6,1
+EMP-0052,HR,Senior,Hanoi,11,2198,2.5,119,4,0
+EMP-0053,Sales,Director,HCMC,7,5353,2.6,79,6,0
+EMP-0054,Engineering,Junior,Danang,21,1959,2.0,5,8,0
+EMP-0055,HR,Manager,Can Tho,8,3591,4.7,28,10,0
+EMP-0056,HR,Manager,HCMC,1,3252,4.1,15,9,0
+EMP-0057,Engineering,Director,Danang,6,4637,3.1,23,9,0
+EMP-0058,HR,Manager,Danang,10,3571,2.6,47,6,0
+EMP-0059,HR,Mid,Can Tho,18,1967,2.7,,5,0
+EMP-0060,HR,Mid,Danang,4,1508,3.4,,7,0
+EMP-0061,HR,Senior,Can Tho,8,2234,3.2,7,4,0
+EMP-0062,Operations,Junior,Can Tho,14,1559,3.1,103,5,0
+EMP-0063,Engineering,Senior,Can Tho,21,3100,3.7,22,5,0
+EMP-0064,Operations,Lead,Can Tho,2,2511,3.9,21,6,0
+EMP-0065,Engineering,Junior,Can Tho,5,1012,4.0,77,7,0
+EMP-0066,Marketing,Director,HCMC,18,5428,2.5,16,4,0
+EMP-0067,Sales,Mid,HCMC,12,1657,,70,1,0
+EMP-0068,Engineering,Senior,Hanoi,19,2564,4.7,31,5,0
+EMP-0069,Sales,Manager,Danang,5,2997,4.6,60,8,0
+EMP-0070,Finance,Lead,Danang,4,3052,2.5,80,10,0
+EMP-0071,Marketing,Lead,Hanoi,17,3145,2.9,19,5,1
+EMP-0072,Marketing,Senior,Danang,15,2569,3.5,38,1,1
+EMP-0073,Finance,Mid,Can Tho,25,2273,3.2,50,4,0
+EMP-0074,HR,Mid,Danang,8,1449,3.5,78,5,0
+EMP-0075,HR,Mid,Danang,2,1186,3.9,34,10,0
+EMP-0076,Engineering,Mid,Can Tho,1,1419,,36,5,0
+EMP-0077,Operations,Junior,Can Tho,7,1052,,53,5,0
+EMP-0078,Marketing,Lead,HCMC,22,3819,4.5,7,5,0
+EMP-0079,Finance,Lead,Can Tho,5,2519,4.5,15,4,0
+EMP-0080,Sales,Director,Danang,1,4144,2.3,26,8,0
+EMP-0081,Marketing,Mid,HCMC,20,2282,3.6,61,5,0
+EMP-0082,Operations,Mid,HCMC,3,1255,2.0,74,2,0
+EMP-0083,Finance,Director,Danang,15,5504,4.3,63,2,1
+EMP-0084,Operations,Junior,Danang,1,815,3.6,62,4,0
+EMP-0085,HR,Director,Danang,6,4154,4.2,5,8,0
+EMP-0086,Finance,Director,Hanoi,15,4831,3.0,35,10,0
+EMP-0087,Engineering,Manager,Hanoi,4,3351,3.6,99,9,0
+EMP-0088,Engineering,Manager,Can Tho,11,4015,4.2,68,7,0
+EMP-0089,Finance,Mid,Hanoi,19,2072,3.0,,2,0
+EMP-0090,Engineering,Mid,Danang,3,1345,3.7,84,8,0
+EMP-0091,Engineering,Senior,HCMC,7,2207,,26,8,0
+EMP-0092,HR,Director,Danang,1,4362,4.7,101,1,1
+EMP-0093,Finance,Junior,Can Tho,23,1847,4.8,12,2,1
+EMP-0094,Sales,Mid,Danang,16,2056,4.8,71,7,0
+EMP-0095,Operations,Lead,Hanoi,22,3724,2.5,51,9,0
+EMP-0096,Finance,Manager,Can Tho,14,4316,3.7,108,6,0
+EMP-0097,Operations,Senior,Can Tho,19,2610,3.1,95,5,0
+EMP-0098,HR,Lead,Hanoi,0,2670,3.8,113,5,1
+EMP-0099,Sales,Senior,Hanoi,0,1947,4.5,65,9,0
+EMP-0100,Engineering,Junior,HCMC,14,1465,3.1,29,5,0
+EMP-0101,Finance,Lead,HCMC,18,3713,4.2,22,8,0
+EMP-0102,Finance,Director,Can Tho,9,4325,3.1,117,6,0
+EMP-0103,HR,Junior,HCMC,24,1934,3.8,,7,1
+EMP-0104,Marketing,Manager,HCMC,18,3764,2.7,,7,0
+EMP-0105,Sales,Lead,Danang,9,3165,3.0,95,1,1
+EMP-0106,Engineering,Lead,Hanoi,16,3251,4.3,25,8,0
+EMP-0107,Finance,Manager,Can Tho,23,4373,2.8,87,10,0
+EMP-0108,HR,Senior,Can Tho,11,2183,4.0,21,6,0
+EMP-0109,Finance,Mid,Hanoi,14,1736,2.6,96,2,1
+EMP-0110,Marketing,Junior,Hanoi,10,1347,3.4,,4,0
+EMP-0111,Sales,Manager,HCMC,16,4240,3.9,88,1,0
+EMP-0112,Marketing,Mid,Danang,1,1172,3.9,,1,0
+EMP-0113,Engineering,Junior,Can Tho,9,1338,2.7,90,2,1
+EMP-0114,Finance,Manager,Danang,2,2999,3.4,2,1,0
+EMP-0115,HR,Lead,HCMC,23,3393,3.1,30,9,0
+EMP-0116,Operations,Senior,Can Tho,12,2611,2.1,35,4,0
+EMP-0117,Operations,Mid,Hanoi,2,1383,4.0,87,4,0
+EMP-0118,HR,Senior,Danang,19,2658,2.6,69,4,0
+EMP-0119,Operations,Director,Danang,16,5853,4.7,83,10,0
+EMP-0120,Engineering,Manager,Can Tho,17,4481,3.0,93,1,1
+EMP-0121,HR,Senior,Hanoi,14,2633,3.9,19,4,0
+EMP-0122,Engineering,Manager,Can Tho,19,3926,2.7,87,1,0
+EMP-0123,Sales,Manager,Can Tho,19,4120,2.6,60,3,0
+EMP-0124,Engineering,Senior,Can Tho,13,2300,2.6,22,8,0
+EMP-0125,Operations,Senior,Can Tho,14,2709,4.3,105,7,0
+EMP-0126,Finance,Director,HCMC,18,5527,4.6,66,2,1
+EMP-0127,Sales,Manager,Danang,17,3950,3.7,80,1,0
+EMP-0128,Marketing,Lead,Can Tho,5,2692,2.2,18,8,0
+EMP-0129,Engineering,Director,Can Tho,16,4778,4.8,17,7,0
+EMP-0130,Engineering,Mid,Hanoi,14,1933,2.6,32,6,0
+EMP-0131,Operations,Director,Hanoi,3,4098,3.9,,7,0
+EMP-0132,HR,Manager,HCMC,12,3362,3.0,110,3,0
+EMP-0133,HR,Senior,HCMC,9,2374,2.9,115,3,1
+EMP-0134,Finance,Senior,Can Tho,0,1778,3.6,,8,0
+EMP-0135,HR,Lead,Hanoi,14,2885,2.7,79,9,0
+EMP-0136,Engineering,Mid,Danang,4,1240,2.4,,10,0
+EMP-0137,Marketing,Junior,Hanoi,1,756,2.5,84,10,0
+EMP-0138,HR,Director,HCMC,18,5211,,41,6,0
+EMP-0139,HR,Manager,Hanoi,2,3101,4.1,67,7,0
+EMP-0140,Finance,Junior,Danang,3,967,3.6,,10,0
+EMP-0141,HR,Manager,Can Tho,10,3469,3.9,78,10,0
+EMP-0142,HR,Mid,Hanoi,19,2054,2.6,59,2,1
+EMP-0143,Finance,Lead,Danang,13,2809,4.4,81,4,0
+EMP-0144,Engineering,Senior,HCMC,9,2254,2.0,43,7,0
+EMP-0145,Sales,Mid,Can Tho,10,1820,3.4,4,3,1
+EMP-0146,Finance,Senior,Danang,14,2653,4.2,38,10,0
+EMP-0147,Finance,Manager,Danang,0,2920,4.4,45,2,1
+EMP-0148,Engineering,Senior,Danang,12,2468,3.7,76,2,1
+EMP-0149,Operations,Senior,Danang,22,2647,3.5,57,5,0
+EMP-0150,Sales,Junior,Hanoi,11,1418,4.7,3,8,0
+EMP-0151,Sales,Senior,Hanoi,15,2676,4.3,111,2,1
+EMP-0152,Sales,Director,HCMC,1,4495,3.6,,1,1
+EMP-0153,Marketing,Lead,Hanoi,1,2252,4.2,,5,0
+EMP-0154,Marketing,Mid,HCMC,6,1423,4.3,34,3,0
+EMP-0155,Sales,Manager,Danang,11,3797,4.8,73,4,0
+EMP-0156,Finance,Senior,Can Tho,17,2620,3.4,13,7,1
+EMP-0157,HR,Mid,Hanoi,22,2335,4.5,78,6,0
+EMP-0158,Operations,Director,Can Tho,25,5795,4.3,16,2,1
+EMP-0159,Engineering,Lead,Danang,9,3088,3.4,28,3,1
+EMP-0160,Marketing,Lead,Can Tho,5,2900,4.4,58,8,1
+EMP-0161,Engineering,Senior,HCMC,15,2529,4.3,16,9,0
+EMP-0162,Marketing,Manager,Hanoi,20,3788,3.4,30,10,0
+EMP-0163,HR,Lead,Hanoi,2,2481,3.8,55,10,0
+EMP-0164,Sales,Director,HCMC,21,4980,3.7,75,10,0
+EMP-0165,HR,Mid,Can Tho,9,1814,,104,10,0
+EMP-0166,Marketing,Lead,Hanoi,20,3620,4.5,115,1,1
+EMP-0167,HR,Manager,Danang,9,3544,2.6,40,5,0
+EMP-0168,HR,Director,HCMC,11,5712,3.8,108,3,1
+EMP-0169,Marketing,Manager,Can Tho,1,2771,4.9,36,1,0
+EMP-0170,Operations,Senior,Danang,22,2837,3.6,60,3,0
+EMP-0171,HR,Mid,Can Tho,9,1829,2.4,,1,0
+EMP-0172,Sales,Junior,Can Tho,4,1034,3.4,77,7,0
+EMP-0173,Finance,Lead,Hanoi,17,3590,2.7,0,10,0
+EMP-0174,Operations,Manager,HCMC,8,3514,3.1,72,8,0
+EMP-0175,Finance,Lead,HCMC,22,3285,3.6,96,5,0
+EMP-0176,Finance,Manager,Danang,2,3055,4.0,87,9,0
+EMP-0177,Finance,Junior,Danang,10,1308,,115,8,0
+EMP-0178,HR,Senior,Can Tho,25,2939,4.1,38,10,0
+EMP-0179,Finance,Mid,HCMC,18,1939,4.4,36,8,0
+EMP-0180,Marketing,Senior,Hanoi,4,2063,2.8,77,3,1
+EMP-0181,Operations,Lead,Danang,11,3281,4.1,102,9,0
+EMP-0182,Engineering,Mid,Can Tho,19,2306,3.5,98,7,0
+EMP-0183,Operations,Director,Can Tho,5,4360,3.0,96,2,0
+EMP-0184,Marketing,Lead,Can Tho,23,3986,2.7,49,8,0
+EMP-0185,Engineering,Senior,Danang,25,3022,4.9,5,2,1
+EMP-0186,HR,Manager,Hanoi,20,4544,2.8,,10,0
+EMP-0187,Operations,Director,HCMC,18,5765,4.0,40,9,1
+EMP-0188,Engineering,Junior,HCMC,13,1353,3.3,36,5,0
+EMP-0189,Finance,Junior,HCMC,1,955,4.5,81,2,1
+EMP-0190,Engineering,Manager,Danang,4,3281,3.9,23,2,1
+EMP-0191,Marketing,Lead,HCMC,21,3877,4.8,54,6,0
+EMP-0192,Marketing,Junior,Hanoi,12,1373,2.8,22,8,1
+EMP-0193,Finance,Lead,Danang,5,2859,3.6,78,2,1
+EMP-0194,Engineering,Junior,HCMC,2,797,4.3,,8,0
+EMP-0195,Engineering,Director,Can Tho,12,4785,4.7,65,8,0
+EMP-0196,Operations,Junior,Danang,17,1584,4.1,15,10,0
+EMP-0197,Marketing,Director,Danang,9,4816,4.9,,9,0
+EMP-0198,Engineering,Lead,Danang,24,3900,2.5,,7,0
+EMP-0199,Operations,Lead,Hanoi,3,2748,2.3,94,4,0
+EMP-0200,Engineering,Director,Can Tho,18,5047,4.4,63,9,0
