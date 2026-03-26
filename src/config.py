@@ -52,7 +52,7 @@ class Config:
 def load_config() -> Config:
     """Load config from environment variables with sensible defaults."""
     return Config(
-        llm_model=os.getenv("LLM_MODEL", "gemini/gemini-2.0-flash"),
+        llm_model=os.getenv("LLM_MODEL", "gemini/gemini-2.5-flash"),
         llm_api_key=os.getenv("LLM_API_KEY", os.getenv("GOOGLE_AI_API_KEY", "")),
         llm_temperature=float(os.getenv("LLM_TEMPERATURE", "0.3")),
         llm_max_tokens=int(os.getenv("LLM_MAX_TOKENS", "2000")),
