@@ -9,7 +9,7 @@ import streamlit as st
 
 # Must be first Streamlit call
 st.set_page_config(
-    page_title="Reporly — AI Report Generator",
+    page_title="NoVa — AI Report Generator",
     page_icon=":material/analytics:",
     layout="wide",
 )
@@ -57,7 +57,10 @@ def _render_sidebar() -> tuple:
     """Render sidebar. Returns (export_format, template_key, max_insights, max_charts)."""
     with st.sidebar:
         st.markdown(
-            '<span class="rp-hero-badge">:material/analytics: Reporly</span>',
+            '<span class="rp-hero-badge">'
+            '<span style="display:inline-block;width:7px;height:7px;border-radius:50%;'
+            'background:#f43f5e;animation:dot 2s ease infinite;margin-right:6px;'
+            'vertical-align:middle;"></span>NoVa</span>',
             unsafe_allow_html=True,
         )
         st.caption(f"v{config.app_version}")
@@ -95,17 +98,38 @@ def _show_welcome():
     with col_main:
         st.markdown(
             '<div style="text-align:center; margin-bottom:8px;">'
-            '<span class="rp-hero-badge">AI-Powered Reports</span></div>',
+            '<span class="rp-hero-badge">'
+            '<span style="display:inline-block;width:7px;height:7px;border-radius:50%;'
+            'background:#f43f5e;animation:dot 2s ease infinite;margin-right:6px;'
+            'vertical-align:middle;"></span>NoVa</span></div>',
             unsafe_allow_html=True,
         )
         st.markdown(
             '<h1 style="text-align:center; font-size:3rem !important; margin-bottom:4px;">'
-            'Upload. Analyze. Report.</h1>',
+            'AI Report Generator</h1>',
             unsafe_allow_html=True,
         )
         st.markdown(
-            '<p style="text-align:center; color:#888; font-size:16px; margin-bottom:32px;">'
-            'Drop your CSV or Excel file and get a professional report in minutes.</p>',
+            '<p style="text-align:center; color:#8a8580; font-size:16px; margin-bottom:12px;">'
+            'Upload &rarr; Analyze &rarr; Export</p>',
+            unsafe_allow_html=True,
+        )
+        st.markdown(
+            '<div style="text-align:center; margin-bottom:32px;">'
+            '<span class="rp-badge" style="background:rgba(244,63,94,.1);color:#f43f5e;'
+            'font-size:12px;padding:4px 12px;margin:0 4px;">CSV</span>'
+            '<span class="rp-badge" style="background:rgba(244,63,94,.1);color:#f43f5e;'
+            'font-size:12px;padding:4px 12px;margin:0 4px;">XLSX</span>'
+            '<span class="rp-badge" style="background:rgba(244,63,94,.1);color:#f43f5e;'
+            'font-size:12px;padding:4px 12px;margin:0 4px;">TSV</span>'
+            '<span style="color:#4c4945;margin:0 8px;">&rarr;</span>'
+            '<span class="rp-badge" style="background:rgba(139,92,246,.1);color:#8b5cf6;'
+            'font-size:12px;padding:4px 12px;margin:0 4px;">PDF</span>'
+            '<span class="rp-badge" style="background:rgba(139,92,246,.1);color:#8b5cf6;'
+            'font-size:12px;padding:4px 12px;margin:0 4px;">PPTX</span>'
+            '<span class="rp-badge" style="background:rgba(139,92,246,.1);color:#8b5cf6;'
+            'font-size:12px;padding:4px 12px;margin:0 4px;">DOCX</span>'
+            '</div>',
             unsafe_allow_html=True,
         )
 
@@ -117,7 +141,7 @@ def _show_welcome():
         'Material+Symbols+Rounded:opsz,wght,FILL@24,400,1" rel="stylesheet">'
     )
     st.markdown(_icon_css, unsafe_allow_html=True)
-    _ms = '<span class="material-symbols-rounded" style="font-size:32px;color:#06b6d4;">'
+    _ms = '<span class="material-symbols-rounded" style="font-size:32px;color:#f43f5e;">'
     with c1:
         welcome_step_card(f"{_ms}upload_file</span>", "Upload", "CSV, Excel, or TSV")
     with c2:
@@ -178,7 +202,7 @@ def main():
     export_format, template_key, max_insights, max_charts = _render_sidebar()
 
     # Header
-    st.title("Reporly")
+    st.title("NoVa")
     st.caption("Upload your data  ·  AI analyzes it  ·  Download a professional report")
 
     # File upload
@@ -200,6 +224,11 @@ def main():
             _process_upload(uploaded_file)
         if st.session_state.df is None:
             return
+        st.success(f"✅ {uploaded_file.name} loaded")
+        uc1, uc2, uc3 = st.columns(3)
+        uc1.metric("Rows", f"{len(st.session_state.df):,}")
+        uc2.metric("Columns", str(len(st.session_state.df.columns)))
+        uc3.metric("Size", f"{uploaded_file.size / 1024:.0f} KB")
 
     # Dashboard tabs
     t_data, t_insights, t_charts, t_export = st.tabs([

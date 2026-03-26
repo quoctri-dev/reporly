@@ -91,9 +91,11 @@ def tab_insights(max_insights: int):
         )
         if st.button(":material/auto_awesome: Generate AI Insights", type="primary",
                       use_container_width=True):
-            with st.spinner("AI is analyzing your data..."):
+            with st.status("Analyzing your data...", expanded=True) as status:
                 try:
+                    st.write("📊 Reading data profile...")
                     sample_str = df.head(15).to_string(index=False)
+                    st.write("🤖 Sending to AI for analysis...")
                     insights = analyze_data(
                         profile=profile,
                         data_sample_str=sample_str,
@@ -103,12 +105,16 @@ def tab_insights(max_insights: int):
                         max_insights=max_insights,
                         max_tokens=config.llm_max_tokens,
                     )
+                    st.write("💡 Parsing insights...")
                     st.session_state.insights = insights
                     st.session_state.analysis_done = True
+                    status.update(label="Analysis complete!", state="complete", expanded=False)
                     st.rerun()
                 except Exception as e:
                     err_info = classify_error(e)
-                    st.error(get_user_message(err_info))
+                    status.update(label="Analysis failed", state="error", expanded=False)
+                    st.error(f"❌ {err_info.message}")
+                    st.info(f"💡 Try: {err_info.suggestion}")
         return
 
     insights = st.session_state.insights
@@ -130,24 +136,35 @@ def tab_charts(max_charts: int):
     insights = st.session_state.insights
 
     if not st.session_state.analysis_done:
-        st.info(":material/info: Generate AI insights first (Insights tab) to get smart chart suggestions.")
+        st.markdown(
+            '<div class="rp-insight-card" style="text-align:center;padding:32px;">'
+            '<div class="rp-insight-title">No charts yet</div>'
+            '<div class="rp-insight-desc">Generate AI insights first (Insights tab) '
+            'to get smart chart suggestions.</div></div>',
+            unsafe_allow_html=True,
+        )
         return
 
     if not st.session_state.charts:
         if st.button(":material/bar_chart: Generate Charts", type="primary",
                       use_container_width=True):
-            with st.spinner("Creating visualizations..."):
+            with st.status("Generating charts...", expanded=True) as status:
                 try:
+                    st.write("🎨 Creating visualizations...")
                     charts = generate_charts(
                         df, insights,
                         max_charts=max_charts,
                         width=config.chart_width,
                         height=config.chart_height,
                     )
+                    st.write(f"✅ {len(charts)} charts generated!")
                     st.session_state.charts = charts
+                    status.update(label="Charts ready!", state="complete", expanded=False)
                     st.rerun()
                 except Exception as e:
-                    st.warning(f":material/warning: Chart generation issue: {str(e)[:200]}")
+                    status.update(label="Chart generation failed", state="error", expanded=False)
+                    st.error(f"❌ Chart generation issue: {str(e)[:200]}")
+                    st.info("💡 Try: Generate insights first, then retry charts.")
             return
 
     charts = st.session_state.charts
@@ -176,7 +193,7 @@ def tab_export(export_format: str, template_key: str, export_fn_map: dict):
     for col, name in zip([tc1, tc2, tc3], TEMPLATE_NAMES):
         meta = TEMPLATE_META[name]
         with col:
-            selected = " border-color:#06b6d4;" if name == template_key else ""
+            selected = " border-color:#f43f5e;" if name == template_key else ""
             st.markdown(f"""
             <div class="rp-template-card" style="{selected}">
                 <div style="display:flex; gap:6px; justify-content:center;">
@@ -245,7 +262,9 @@ def _do_export(title: str, export_format: str, template_key: str, export_fn_map:
             type="primary",
             use_container_width=True,
         )
+        st.toast(f"✅ {export_format} report ready — {size_kb:.0f} KB")
     except Exception as e:
         err_info = classify_error(e)
-        st.error(get_user_message(err_info))
+        st.error(f"❌ {err_info.message}")
+        st.info(f"💡 Try: {err_info.suggestion}")
         progress.progress(100, text="Export failed")

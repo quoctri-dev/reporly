@@ -156,4 +156,4 @@ def classify_error(exc: Exception) -> ErrorInfo:
 
 def get_user_message(error_info: ErrorInfo) -> str:
     """Format ErrorInfo into a single user-friendly message."""
-    return f"{error_info.message}\n\n**What to do:** {error_info.suggestion}"
+    return f"❌ {error_info.message}\n\n💡 **Try:** {error_info.suggestion}"

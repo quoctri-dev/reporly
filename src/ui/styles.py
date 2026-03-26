@@ -21,13 +21,13 @@ html, body, [class*="css"] {
 
 /* === BACKGROUND === */
 .stApp {
-    background: linear-gradient(135deg, #0f0f0f 0%, #1a1a2e 100%);
+    background: linear-gradient(135deg, #050508 0%, #0e0e16 100%);
 }
 
 /* === SIDEBAR === */
 section[data-testid="stSidebar"] {
-    background: #111118;
-    border-right: 1px solid #222;
+    background: #0a0a10;
+    border-right: 1px solid rgba(244,63,94,.2);
 }
 section[data-testid="stSidebar"] .stSelectbox label,
 section[data-testid="stSidebar"] .stSlider label {
@@ -40,7 +40,7 @@ section[data-testid="stSidebar"] .stSlider label {
 h1 {
     font-family: 'Plus Jakarta Sans', sans-serif !important;
     font-weight: 800 !important;
-    background: linear-gradient(135deg, #06b6d4, #8b5cf6);
+    background: linear-gradient(135deg, #f43f5e, #8b5cf6);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     background-clip: text;
@@ -50,28 +50,28 @@ h1 {
 h2 {
     font-family: 'Plus Jakarta Sans', sans-serif !important;
     font-weight: 700 !important;
-    color: #f0f0f0 !important;
+    color: #e8e4df !important;
     font-size: 1.4rem !important;
 }
 h3 {
     font-family: 'Plus Jakarta Sans', sans-serif !important;
     font-weight: 600 !important;
-    color: #e0e0e0 !important;
+    color: #e8e4df !important;
 }
 
 /* === METRIC CARDS === */
 div[data-testid="stMetric"] {
-    background: rgba(26, 26, 26, 0.8);
+    background: rgba(20, 20, 42, 0.8);
     backdrop-filter: blur(12px);
-    border: 1px solid rgba(255, 255, 255, 0.08);
+    border: 1px solid rgba(244, 63, 94, 0.35);
     border-radius: 12px;
     padding: 20px 16px;
     transition: all 0.2s ease;
 }
 div[data-testid="stMetric"]:hover {
-    border-color: rgba(6, 182, 212, 0.3);
+    border-color: rgba(244, 63, 94, 0.3);
     transform: translateY(-2px);
-    box-shadow: 0 8px 32px rgba(6, 182, 212, 0.1);
+    box-shadow: 0 8px 32px rgba(244, 63, 94, 0.1);
 }
 div[data-testid="stMetric"] label {
     color: #888 !important;
@@ -83,13 +83,13 @@ div[data-testid="stMetric"] [data-testid="stMetricValue"] {
     font-family: 'Plus Jakarta Sans', sans-serif !important;
     font-weight: 700 !important;
     font-size: 1.8rem !important;
-    color: #f0f0f0 !important;
+    color: #e8e4df !important;
 }
 
 /* === TABS === */
 .stTabs [data-baseweb="tab-list"] {
     gap: 4px;
-    background: #141418;
+    background: #12121c;
     border-radius: 12px;
     padding: 4px;
     border: 1px solid #222;
@@ -102,8 +102,8 @@ div[data-testid="stMetric"] [data-testid="stMetricValue"] {
     transition: all 0.15s ease;
 }
 .stTabs [aria-selected="true"] {
-    background: rgba(6, 182, 212, 0.15) !important;
-    color: #06b6d4 !important;
+    background: rgba(244, 63, 94, 0.15) !important;
+    color: #f43f5e !important;
     font-weight: 600;
 }
 .stTabs [data-baseweb="tab"]:hover {
@@ -111,13 +111,13 @@ div[data-testid="stMetric"] [data-testid="stMetricValue"] {
     background: rgba(255, 255, 255, 0.05);
 }
 .stTabs [data-baseweb="tab-highlight"] {
-    background-color: #06b6d4 !important;
+    background-color: #f43f5e !important;
 }
 
 /* === BUTTONS === */
 .stButton > button[kind="primary"],
 .stDownloadButton > button {
-    background: linear-gradient(135deg, #06b6d4, #0891b2) !important;
+    background: linear-gradient(135deg, #f43f5e, #8b5cf6) !important;
     color: white !important;
     border: none !important;
     border-radius: 10px !important;
@@ -129,7 +129,7 @@ div[data-testid="stMetric"] [data-testid="stMetricValue"] {
 .stButton > button[kind="primary"]:hover,
 .stDownloadButton > button:hover {
     transform: translateY(-1px) !important;
-    box-shadow: 0 4px 16px rgba(6, 182, 212, 0.4) !important;
+    box-shadow: 0 4px 16px rgba(244, 63, 94, 0.4) !important;
 }
 .stButton > button[kind="primary"]:active,
 .stDownloadButton > button:active {
@@ -143,8 +143,8 @@ div[data-testid="stMetric"] [data-testid="stMetricValue"] {
     transition: all 0.2s ease !important;
 }
 .stButton > button[kind="secondary"]:hover {
-    border-color: #06b6d4 !important;
-    color: #06b6d4 !important;
+    border-color: #f43f5e !important;
+    color: #f43f5e !important;
 }
 
 /* === FILE UPLOADER === */
@@ -155,13 +155,13 @@ section[data-testid="stFileUploader"] {
     transition: all 0.2s ease;
 }
 section[data-testid="stFileUploader"]:hover {
-    border-color: #06b6d4 !important;
-    background: rgba(6, 182, 212, 0.03);
+    border-color: #f43f5e !important;
+    background: rgba(244, 63, 94, 0.03);
 }
 
 /* === EXPANDER === */
 .streamlit-expanderHeader {
-    background: #1a1a1a !important;
+    background: #14142a !important;
     border-radius: 8px !important;
     border: 1px solid #282828 !important;
 }
@@ -175,7 +175,7 @@ section[data-testid="stFileUploader"]:hover {
 
 /* === PROGRESS BAR === */
 .stProgress > div > div {
-    background: linear-gradient(90deg, #06b6d4, #8b5cf6) !important;
+    background: linear-gradient(90deg, #f43f5e, #8b5cf6) !important;
     border-radius: 8px;
 }
 
@@ -189,6 +189,10 @@ hr {
     from { opacity: 0; transform: translateY(16px); }
     to   { opacity: 1; transform: translateY(0); }
 }
+@keyframes dot {
+    0%, 100% { opacity: 1; transform: scale(1); }
+    50%      { opacity: .4; transform: scale(.7); }
+}
 @keyframes shimmer {
     0%   { background-position: -200% 0; }
     100% { background-position: 200% 0; }
@@ -200,17 +204,17 @@ hr {
 /* === CUSTOM COMPONENTS (via st.markdown) === */
 .rp-hero-badge {
     display: inline-block;
-    background: rgba(6, 182, 212, 0.1);
-    color: #06b6d4;
+    background: rgba(244, 63, 94, 0.1);
+    color: #f43f5e;
     padding: 6px 14px;
     border-radius: 20px;
     font-size: 13px;
     font-weight: 500;
     letter-spacing: 0.02em;
-    border: 1px solid rgba(6, 182, 212, 0.2);
+    border: 1px solid rgba(244, 63, 94, 0.2);
 }
 .rp-insight-card {
-    background: rgba(26, 26, 26, 0.6);
+    background: rgba(20, 20, 42, 0.6);
     backdrop-filter: blur(8px);
     border: 1px solid #282828;
     border-radius: 12px;
@@ -219,13 +223,13 @@ hr {
     transition: all 0.2s ease;
 }
 .rp-insight-card:hover {
-    border-color: rgba(6, 182, 212, 0.2);
+    border-color: rgba(244, 63, 94, 0.2);
 }
 .rp-insight-title {
     font-family: 'Plus Jakarta Sans', sans-serif;
     font-weight: 600;
     font-size: 15px;
-    color: #f0f0f0;
+    color: #e8e4df;
     margin-bottom: 8px;
 }
 .rp-insight-desc {
@@ -246,8 +250,8 @@ hr {
 .rp-badge-medium { background: rgba(234,179,8,0.15); color: #eab308; }
 .rp-badge-low    { background: rgba(34,197,94,0.15); color: #22c55e; }
 .rp-template-card {
-    background: #1a1a1a;
-    border: 1px solid #333;
+    background: #14142a;
+    border: 1px solid rgba(244,63,94,.15);
     border-radius: 12px;
     padding: 20px;
     text-align: center;
@@ -255,7 +259,7 @@ hr {
     cursor: default;
 }
 .rp-template-card:hover {
-    border-color: #06b6d4;
+    border-color: #f43f5e;
     transform: translateY(-2px);
     box-shadow: 0 4px 20px rgba(0,0,0,0.3);
 }
@@ -263,7 +267,7 @@ hr {
     font-family: 'Plus Jakarta Sans', sans-serif;
     font-weight: 700;
     font-size: 16px;
-    color: #f0f0f0;
+    color: #e8e4df;
     margin-top: 12px;
 }
 .rp-template-desc {
@@ -272,7 +276,7 @@ hr {
     margin-top: 4px;
 }
 .rp-step-card {
-    background: rgba(26, 26, 26, 0.6);
+    background: rgba(20, 20, 42, 0.6);
     border: 1px solid #282828;
     border-radius: 12px;
     padding: 24px 20px;
@@ -280,7 +284,7 @@ hr {
     transition: all 0.2s ease;
 }
 .rp-step-card:hover {
-    border-color: rgba(6, 182, 212, 0.2);
+    border-color: rgba(244, 63, 94, 0.2);
     transform: translateY(-2px);
 }
 .rp-step-icon {
@@ -291,7 +295,7 @@ hr {
     font-family: 'Plus Jakarta Sans', sans-serif;
     font-weight: 600;
     font-size: 15px;
-    color: #f0f0f0;
+    color: #e8e4df;
 }
 .rp-step-desc {
     font-size: 13px;
