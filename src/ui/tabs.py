@@ -14,8 +14,7 @@ from src.core.models import Report
 from src.charts import generate_charts
 from src.core.health import classify_error, get_user_message
 from src.core.analytics import track_report
-from src.templates import TEMPLATE_NAMES
-from src.ui.styles import insight_card, template_preview_card
+from src.ui.styles import insight_card
 
 config = load_config()
 
@@ -29,12 +28,6 @@ EXPORT_FORMATS = {
         "ext": "docx",
         "mime": "application/vnd.openxmlformats-officedocument.wordprocessingml.document",
     },
-}
-
-TEMPLATE_META = {
-    "minimal":   {"primary": "#374151", "accent": "#2563EB", "desc": "Clean & simple"},
-    "corporate": {"primary": "#1E3A5F", "accent": "#B8860B", "desc": "Formal & navy"},
-    "modern":    {"primary": "#6366F1", "accent": "#EC4899", "desc": "Bold & colorful"},
 }
 
 
@@ -186,26 +179,6 @@ def tab_export(export_format: str, template_key: str, export_fn_map: dict):
     """Export — template preview, generate, download."""
     insights = st.session_state.insights
     charts = st.session_state.charts
-
-    # Template preview
-    st.markdown("##### :material/palette: Selected Template")
-    tc1, tc2, tc3 = st.columns(3)
-    for col, name in zip([tc1, tc2, tc3], TEMPLATE_NAMES):
-        meta = TEMPLATE_META[name]
-        with col:
-            selected = " border-color:#f43f5e;" if name == template_key else ""
-            st.markdown(f"""
-            <div class="rp-template-card" style="{selected}">
-                <div style="display:flex; gap:6px; justify-content:center;">
-                    <div style="width:28px; height:28px; border-radius:6px; background:{meta['primary']};"></div>
-                    <div style="width:28px; height:28px; border-radius:6px; background:{meta['accent']};"></div>
-                </div>
-                <div class="rp-template-name">{name.capitalize()}{'  ✓' if name == template_key else ''}</div>
-                <div class="rp-template-desc">{meta['desc']}</div>
-            </div>
-            """, unsafe_allow_html=True)
-
-    st.markdown("")
 
     report_title = st.text_input(
         ":material/title: Report Title",

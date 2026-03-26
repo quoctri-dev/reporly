@@ -249,32 +249,6 @@ hr {
 .rp-badge-high   { background: rgba(239,68,68,0.15); color: #ef4444; }
 .rp-badge-medium { background: rgba(234,179,8,0.15); color: #eab308; }
 .rp-badge-low    { background: rgba(34,197,94,0.15); color: #22c55e; }
-.rp-template-card {
-    background: #14142a;
-    border: 1px solid rgba(244,63,94,.15);
-    border-radius: 12px;
-    padding: 20px;
-    text-align: center;
-    transition: all 0.2s ease;
-    cursor: default;
-}
-.rp-template-card:hover {
-    border-color: #f43f5e;
-    transform: translateY(-2px);
-    box-shadow: 0 4px 20px rgba(0,0,0,0.3);
-}
-.rp-template-name {
-    font-family: 'Plus Jakarta Sans', sans-serif;
-    font-weight: 700;
-    font-size: 16px;
-    color: #e8e4df;
-    margin-top: 12px;
-}
-.rp-template-desc {
-    font-size: 12px;
-    color: #888;
-    margin-top: 4px;
-}
 .rp-step-card {
     background: rgba(20, 20, 42, 0.6);
     border: 1px solid #282828;
@@ -326,20 +300,6 @@ def insight_card(index: int, title: str, description: str, importance: str) -> N
             <span class="rp-badge {badge_class}">{importance}</span>
         </div>
         <div class="rp-insight-desc">{description}</div>
-    </div>
-    """, unsafe_allow_html=True)
-
-
-def template_preview_card(name: str, primary: str, accent: str, desc: str) -> None:
-    """Render a template preview card with color swatch."""
-    st.markdown(f"""
-    <div class="rp-template-card">
-        <div style="display:flex; gap:6px; justify-content:center;">
-            <div style="width:32px; height:32px; border-radius:8px; background:{primary};"></div>
-            <div style="width:32px; height:32px; border-radius:8px; background:{accent};"></div>
-        </div>
-        <div class="rp-template-name">{name}</div>
-        <div class="rp-template-desc">{desc}</div>
     </div>
     """, unsafe_allow_html=True)
 

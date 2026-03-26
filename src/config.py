@@ -41,7 +41,7 @@ class Config:
 
     # Export settings
     export_format: str = "pdf"          # pdf, pptx, docx
-    template_name: str = "minimal"      # minimal, corporate, modern
+    template_name: str = "nova"
 
     # App settings
     app_name: str = "Reporly"
@@ -64,7 +64,7 @@ def load_config() -> Config:
         report_title=os.getenv("REPORT_TITLE", "Data Analysis Report"),
         max_charts=int(os.getenv("MAX_CHARTS", "5")),
         export_format=os.getenv("EXPORT_FORMAT", "pdf"),
-        template_name=os.getenv("TEMPLATE_NAME", "minimal"),
+        template_name=os.getenv("TEMPLATE_NAME", "nova"),
         debug=os.getenv("DEBUG", "false").lower() == "true",
     )
 

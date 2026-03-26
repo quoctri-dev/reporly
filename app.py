@@ -23,10 +23,9 @@ from src.io.reader import read_uploaded_file, FileReadError
 from src.io.exporter import export_pdf
 from src.io.pptx_exporter import export_pptx
 from src.io.docx_exporter import export_docx
-from src.templates import TEMPLATE_NAMES
 from src.core.analytics import render_sidebar_stats
-from src.ui.styles import inject_custom_css, template_preview_card, welcome_step_card
-from src.ui.tabs import tab_data, tab_insights, tab_charts, tab_export, TEMPLATE_META
+from src.ui.styles import inject_custom_css, welcome_step_card
+from src.ui.tabs import tab_data, tab_insights, tab_charts, tab_export
 
 # ---------------------------------------------------------------------------
 # Config + CSS
@@ -54,7 +53,7 @@ def _init_state():
 # Sidebar
 # ---------------------------------------------------------------------------
 def _render_sidebar() -> tuple:
-    """Render sidebar. Returns (export_format, template_key, max_insights, max_charts)."""
+    """Render sidebar. Returns (export_format, max_insights, max_charts)."""
     with st.sidebar:
         st.markdown(
             '<span class="rp-hero-badge">'
@@ -71,11 +70,6 @@ def _render_sidebar() -> tuple:
             "Export Format", options=EXPORT_KEYS, index=0,
             help="PDF, PPTX (PowerPoint), or DOCX (Word)",
         )
-        template_name = st.selectbox(
-            "Report Template",
-            options=[n.capitalize() for n in TEMPLATE_NAMES], index=0,
-            help="Minimal: clean  ·  Corporate: formal  ·  Modern: bold",
-        )
         st.divider()
 
         st.markdown("##### :material/settings: Analysis")
@@ -85,7 +79,7 @@ def _render_sidebar() -> tuple:
         st.divider()
         render_sidebar_stats()
 
-    return export_format, template_name.lower(), max_insights, max_charts
+    return export_format, max_insights, max_charts
 
 
 # ---------------------------------------------------------------------------
@@ -149,13 +143,6 @@ def _show_welcome():
     with c3:
         welcome_step_card(f"{_ms}download</span>", "Download", "PDF, PPTX, or DOCX")
 
-    st.markdown("")
-    st.markdown("##### :material/palette: Report Templates")
-    tc1, tc2, tc3 = st.columns(3)
-    for col, name in zip([tc1, tc2, tc3], TEMPLATE_NAMES):
-        meta = TEMPLATE_META[name]
-        with col:
-            template_preview_card(name.capitalize(), meta["primary"], meta["accent"], meta["desc"])
 
 
 # ---------------------------------------------------------------------------
@@ -199,7 +186,8 @@ def main():
         st.info("Set up your `.env` file — see `.env.example` for instructions.")
         st.stop()
 
-    export_format, template_key, max_insights, max_charts = _render_sidebar()
+    export_format, max_insights, max_charts = _render_sidebar()
+    template_key = "nova"
 
     # Header
     st.title("NoVa")
