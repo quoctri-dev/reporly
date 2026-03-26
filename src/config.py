@@ -43,6 +43,10 @@ class Config:
     export_format: str = "pdf"          # pdf, pptx, docx
     template_name: str = "nova"
 
+    # Demo limit
+    demo_limit: int = 1              # max uses per cooldown period (0 = unlimited)
+    demo_cooldown_days: int = 3      # cooldown period in days
+
     # App settings
     app_name: str = "Reporly"
     app_version: str = "0.2.0"
@@ -65,6 +69,8 @@ def load_config() -> Config:
         max_charts=int(os.getenv("MAX_CHARTS", "5")),
         export_format=os.getenv("EXPORT_FORMAT", "pdf"),
         template_name=os.getenv("TEMPLATE_NAME", "nova"),
+        demo_limit=int(os.getenv("DEMO_LIMIT", "1")),
+        demo_cooldown_days=int(os.getenv("DEMO_COOLDOWN_DAYS", "3")),
         debug=os.getenv("DEBUG", "false").lower() == "true",
     )
 

@@ -5,7 +5,11 @@ Upload data -> AI analyzes -> Professional report (PDF / PPTX / DOCX)
 Wiring layer: imports all modules, no business logic here.
 UI: Dashboard layout — sidebar settings + main area with 4 tabs.
 """
+import json
+from datetime import datetime, timedelta
+
 import streamlit as st
+import extra_streamlit_components as stx
 
 # Must be first Streamlit call
 st.set_page_config(
@@ -169,6 +173,63 @@ def _process_upload(uploaded_file):
     st.session_state.charts = []
     st.session_state.report_bytes = None
     st.session_state.analysis_done = False
+    _record_demo_use(config)
+
+
+# ---------------------------------------------------------------------------
+# Demo limit (cookie-based)
+# ---------------------------------------------------------------------------
+def _check_demo_limit(config) -> bool:
+    """Check if user has exceeded demo limit. Returns True if blocked."""
+    if config.demo_limit <= 0:
+        return False  # unlimited
+
+    cookie_manager = stx.CookieManager(key="nova_demo_cookies")
+    raw = cookie_manager.get("nova_demo")
+
+    if raw:
+        try:
+            data = json.loads(raw)
+            uses = data.get("uses", 0)
+            last_used = datetime.fromisoformat(data.get("last_used", "2000-01-01"))
+            cooldown = timedelta(days=config.demo_cooldown_days)
+
+            if datetime.now() - last_used > cooldown:
+                return False
+            elif uses >= config.demo_limit:
+                return True  # blocked
+        except (json.JSONDecodeError, ValueError):
+            pass
+
+    return False
+
+
+def _record_demo_use(config):
+    """Record a demo use in cookie."""
+    cookie_manager = stx.CookieManager(key="nova_demo_cookies")
+    raw = cookie_manager.get("nova_demo")
+
+    uses = 0
+    if raw:
+        try:
+            data = json.loads(raw)
+            last_used = datetime.fromisoformat(data.get("last_used", "2000-01-01"))
+            cooldown = timedelta(days=config.demo_cooldown_days)
+            if datetime.now() - last_used <= cooldown:
+                uses = data.get("uses", 0)
+        except (json.JSONDecodeError, ValueError):
+            pass
+
+    new_data = json.dumps({
+        "uses": uses + 1,
+        "last_used": datetime.now().isoformat(),
+    })
+    cookie_manager.set(
+        "nova_demo",
+        new_data,
+        expires_at=datetime.now() + timedelta(days=config.demo_cooldown_days),
+        key="nova_demo_set",
+    )
 
 
 # ---------------------------------------------------------------------------
@@ -200,6 +261,20 @@ def main():
         help=f"Max {config.max_file_size_mb}MB. Supports CSV, Excel, TSV",
         label_visibility="collapsed",
     )
+
+    # Demo limit check
+    if _check_demo_limit(config):
+        st.warning(
+            f"Demo limit reached — {config.demo_limit} use(s) per "
+            f"{config.demo_cooldown_days} days. Contact us for full access."
+        )
+        st.link_button(
+            "Contact for Full Access",
+            "https://novasentio.com/#contact",
+            type="primary",
+            use_container_width=True,
+        )
+        st.stop()
 
     if not uploaded_file:
         st.session_state.df = None
