@@ -53,13 +53,6 @@ def _init_state():
         st.session_state.setdefault(key, default)
 
 
-def _get_cookie_manager():
-    """Return CookieManager singleton cached in session_state."""
-    if "cookie_manager" not in st.session_state:
-        st.session_state.cookie_manager = stx.CookieManager(key="nova_demo_cookies")
-    return st.session_state.cookie_manager
-
-
 # ---------------------------------------------------------------------------
 # Sidebar
 # ---------------------------------------------------------------------------
@@ -159,7 +152,7 @@ def _show_welcome():
 # ---------------------------------------------------------------------------
 # File processing
 # ---------------------------------------------------------------------------
-def _process_upload(uploaded_file):
+def _process_upload(uploaded_file, cookie_manager):
     """Read and profile uploaded file into session_state."""
     try:
         df = read_uploaded_file(
@@ -180,18 +173,17 @@ def _process_upload(uploaded_file):
     st.session_state.charts = []
     st.session_state.report_bytes = None
     st.session_state.analysis_done = False
-    _record_demo_use(config)
+    _record_demo_use(config, cookie_manager)
 
 
 # ---------------------------------------------------------------------------
 # Demo limit (cookie-based)
 # ---------------------------------------------------------------------------
-def _check_demo_limit(config) -> bool:
+def _check_demo_limit(config, cookie_manager) -> bool:
     """Check if user has exceeded demo limit. Returns True if blocked."""
     if config.demo_limit <= 0:
         return False  # unlimited
 
-    cookie_manager = _get_cookie_manager()
     raw = cookie_manager.get("nova_demo")
 
     if raw:
@@ -211,9 +203,8 @@ def _check_demo_limit(config) -> bool:
     return False
 
 
-def _record_demo_use(config):
+def _record_demo_use(config, cookie_manager):
     """Record a demo use in cookie."""
-    cookie_manager = _get_cookie_manager()
     raw = cookie_manager.get("nova_demo")
 
     uses = 0
@@ -257,6 +248,9 @@ def main():
     export_format, max_insights, max_charts = _render_sidebar()
     template_key = "nova"
 
+    # Cookie manager — render ONCE per rerun, pass to functions
+    cookie_manager = stx.CookieManager(key="nova_demo_cookies")
+
     # Header
     st.title("NoVa")
     st.caption("Upload your data  ·  AI analyzes it  ·  Download a professional report")
@@ -270,7 +264,7 @@ def main():
     )
 
     # Demo limit check
-    if _check_demo_limit(config):
+    if _check_demo_limit(config, cookie_manager):
         st.warning(
             f"Demo limit reached — {config.demo_limit} use(s) per "
             f"{config.demo_cooldown_days} days. Contact us for full access."
@@ -291,7 +285,7 @@ def main():
     # Process new file
     if st.session_state.filename != uploaded_file.name or st.session_state.df is None:
         with st.spinner("Reading file..."):
-            _process_upload(uploaded_file)
+            _process_upload(uploaded_file, cookie_manager)
         if st.session_state.df is None:
             return
         st.success(f"✅ {uploaded_file.name} loaded")
