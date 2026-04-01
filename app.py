@@ -53,6 +53,13 @@ def _init_state():
         st.session_state.setdefault(key, default)
 
 
+def _get_cookie_manager():
+    """Return CookieManager singleton cached in session_state."""
+    if "cookie_manager" not in st.session_state:
+        st.session_state.cookie_manager = stx.CookieManager(key="nova_demo_cookies")
+    return st.session_state.cookie_manager
+
+
 # ---------------------------------------------------------------------------
 # Sidebar
 # ---------------------------------------------------------------------------
@@ -184,7 +191,7 @@ def _check_demo_limit(config) -> bool:
     if config.demo_limit <= 0:
         return False  # unlimited
 
-    cookie_manager = stx.CookieManager(key="nova_demo_cookies")
+    cookie_manager = _get_cookie_manager()
     raw = cookie_manager.get("nova_demo")
 
     if raw:
@@ -206,7 +213,7 @@ def _check_demo_limit(config) -> bool:
 
 def _record_demo_use(config):
     """Record a demo use in cookie."""
-    cookie_manager = stx.CookieManager(key="nova_demo_cookies")
+    cookie_manager = _get_cookie_manager()
     raw = cookie_manager.get("nova_demo")
 
     uses = 0
